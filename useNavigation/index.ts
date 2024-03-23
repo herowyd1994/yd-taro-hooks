@@ -5,7 +5,7 @@ import * as utils from '@yd/taro-utils';
 import { Back, MethodKeys, MethodFn } from './types';
 import { useRouter } from '@tarojs/taro';
 
-export default <R extends Record<string, any>, P extends Record<string, any> = any>(
+export default <P extends Record<string, any>, R extends Record<string, any> = any>(
     routeNames?: R,
     defaultParams?: P
 ) => {
