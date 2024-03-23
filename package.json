@@ -1,0 +1,25 @@
+{
+    "name": "@yd/taro-hooks",
+    "version": "1.0.0",
+    "description": "## taro工具库",
+    "main": "index.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://gitee.com/herowyd1994/yd-taro-hooks.git"
+    },
+    "author": "~Wyd丶",
+    "license": "ISC",
+    "dependencies": {
+        "@yd/fetch": "https://gitee.com/herowyd1994/yd-fetch.git",
+        "@yd/r-hooks": "https://gitee.com/herowyd1994/yd-r-hooks.git",
+        "@yd/taro-utils": "https://gitee.com/herowyd1994/yd-taro-utils.git"
+    },
+    "devDependencies": {
+        "@tarojs/taro": "^3.6.25",
+        "@types/react": "^18.2.69",
+        "prettier": "^3.2.5"
+    }
+}
