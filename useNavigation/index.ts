@@ -6,7 +6,7 @@ import { Back, MethodKeys, MethodFn } from './types';
 import { useRouter } from '@tarojs/taro';
 
 export default <R extends Record<string, any>, P extends Record<string, any> = any>(
-    routes?: R,
+    routeNames?: R,
     defaultParams?: P
 ) => {
     const { path, params } = useRouter();
@@ -14,7 +14,7 @@ export default <R extends Record<string, any>, P extends Record<string, any> = a
     const methods = (['push', 'replace', 'reLaunch', 'switchTab'] as MethodKeys[]).reduce(
         (obj, key) => {
             const fn: MethodFn<keyof R> = throttle((routeKey, params = {}) =>
-                utils[key](routes![routeKey], params)
+                utils[key](routeNames![routeKey], params)
             );
             return { ...obj, [key]: fn };
         },
