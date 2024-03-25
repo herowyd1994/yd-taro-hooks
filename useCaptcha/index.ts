@@ -40,7 +40,7 @@ export default <S extends Store>({
             toast(err.errMsg);
             return Promise.reject(err);
         }
-        return await onCountDown();
+        return onCountDown();
     }, delay);
     const onAbort = async () => {
         await unLock();
