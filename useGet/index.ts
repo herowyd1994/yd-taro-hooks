@@ -23,7 +23,7 @@ export default <D = any>(
     }: Config<D> = {}
 ) => {
     const { get } = useFetch();
-    const { data, key, dispatch } = useStore<Store<D>>({
+    const { data, key, dispatch, reset } = useStore<Store<D>>({
         data: void 0,
         key: ''
     });
@@ -37,6 +37,7 @@ export default <D = any>(
         if (time - t <= interval) {
             return d;
         }
+        reset();
         const data = formatData(await getData(key));
         dispatch({ data, key });
         Reflect.set(cache[key], 'data', data);
