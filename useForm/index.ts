@@ -24,9 +24,7 @@ export default <S extends Store>({
             const res = await fetch[method](
                 url,
                 formatParams({ ...(await onValidate()), ...params }),
-                {
-                    toast: false
-                }
+                { toast: false }
             );
             back && b();
             return res;

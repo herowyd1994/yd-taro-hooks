@@ -11,4 +11,4 @@ export interface Props<S> {
     formatParams?(params: Params<S>): Params<S>;
 }
 type Params<S> = Record<string, any> & Values<S>;
-export type Handler = (params?: Record<string, any>) => Params<any>;
+export type Handler = <D>(params?: Record<string, any>) => Promise<D>;
