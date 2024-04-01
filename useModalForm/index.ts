@@ -8,9 +8,9 @@ import { Action, Store } from '@yd/r-hooks/useVerify/types';
 export default <S extends Store>(props: Omit<Props<S>, 'back'>) => {
     const { dispatch: d, reset, ...form } = useForm(props);
     const { visible, dispatch } = useStore({ visible: false });
-    const onShow = (params: Action<S>) => {
+    const onShow = async (params: Action<S>) => {
         dispatch({ visible: true });
-        d(params);
+        await d(params);
     };
     const onClose = () => {
         dispatch({ visible: false });

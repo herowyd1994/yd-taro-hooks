@@ -11,11 +11,11 @@ export default <S extends Store>({
     submitUrl,
     updateUrl,
     delay,
-    back = false,
+    back: b = false,
     formatParams = (params) => params
 }: Props<S>) => {
     const fetch = useFetch();
-    const { back: b } = useNavigation();
+    const { back } = useNavigation();
     const { onValidate, ...verify } = useVerify(store);
     const { done: d1 } = useLock((params) => handler('post', submitUrl!, params), delay);
     const { done: d2 } = useLock((params) => handler('put', updateUrl!, params), delay);
@@ -26,7 +26,7 @@ export default <S extends Store>({
                 formatParams({ ...(await onValidate()), ...params }),
                 { toast: false }
             );
-            back && b();
+            b && back();
             return res;
         } catch (err: any) {
             toast(err.errMsg);
