@@ -10,7 +10,7 @@ export default <S extends Store>(props: Omit<Props<S>, 'back'>) => {
     const { visible, dispatch } = useStore({ visible: false });
     const onShow = async (params: Action<S>) => {
         dispatch({ visible: true });
-        await d(params);
+        d(params);
     };
     const onClose = () => {
         dispatch({ visible: false });

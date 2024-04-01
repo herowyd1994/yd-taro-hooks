@@ -17,12 +17,12 @@ export default <S extends Store>({
     const fetch = useFetch();
     const { back } = useNavigation();
     const { onValidate, ...verify } = useVerify(store);
-    const { done: d1 } = useLock((params) => handler('post', submitUrl!, params), delay);
-    const { done: d2 } = useLock((params) => handler('put', updateUrl!, params), delay);
-    const handler = async (method: 'post' | 'put', url: string, params?: Record<string, any>) => {
+    const { done: d1 } = useLock((params) => handler('post', params), delay);
+    const { done: d2 } = useLock((params) => handler('put', params), delay);
+    const handler = async (method: 'post' | 'put', params?: Record<string, any>) => {
         try {
             const res = await fetch[method](
-                url,
+                method === 'post' ? submitUrl! : updateUrl!,
                 formatParams({ ...(await onValidate()), ...params }),
                 { toast: false }
             );
