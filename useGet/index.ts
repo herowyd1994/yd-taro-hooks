@@ -16,7 +16,7 @@ export default <D = any>(
         interval = 5000,
         delay,
         deps = [],
-        reset = false,
+        reset: r = false,
         formatParams = (params) => params,
         formatData = (data) => data,
         done,
@@ -24,12 +24,7 @@ export default <D = any>(
     }: Config<D> = {}
 ) => {
     const { get } = useFetch();
-    const {
-        data,
-        key,
-        dispatch,
-        reset: r
-    } = useStore<Store<D>>({
+    const { data, key, dispatch, reset } = useStore<Store<D>>({
         data: void 0,
         key: ''
     });
@@ -39,7 +34,7 @@ export default <D = any>(
         const now = Date.now();
         !Reflect.has(cache, key) &&
             Reflect.set(cache, key, { url, params, config, data: void 0, time: 0 });
-        reset && (await r());
+        r && (await reset());
         let { data, time } = Reflect.get(cache, key);
         if (now - time > interval) {
             data = formatData(await getData(key));
