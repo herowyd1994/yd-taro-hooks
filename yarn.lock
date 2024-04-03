@@ -57,27 +57,21 @@
   resolved "https://registry.npmmirror.com/@types/scheduler/-/scheduler-0.16.8.tgz#ce5ace04cfeabe7ef87c0091e50752e36707deff"
   integrity sha512-WZLiwShhwLRmeV6zH+GkbOFT6Z6VklCItrDioxUnv+u4Ll+8vKeFySoFyK/0ctcRpOmwAicELfmys1sDc/Rw+A==
 
-"@yd/fetch@https://gitee.com/herowyd1994/yd-fetch.git":
+"@yd/fetch@https://github.com/herowyd1994/yd-fetch.git":
   version "1.0.0"
-  resolved "https://gitee.com/herowyd1994/yd-fetch.git#ee7be6d8aba1e5abed8a0541f62f8a183a6c8813"
+  resolved "https://github.com/herowyd1994/yd-fetch.git#e61af44c2a15f70eed3983a67dedb3a20bcf99d6"
   dependencies:
-    "@yd/utils" "https://gitee.com/herowyd1994/yd-utils.git"
+    "@yd/utils" "https://github.com/herowyd1994/yd-utils.git"
 
-"@yd/r-hooks@https://gitee.com/herowyd1994/yd-r-hooks.git":
+"@yd/r-hooks@https://github.com/herowyd1994/yd-r-hooks.git":
   version "1.0.0"
-  resolved "https://gitee.com/herowyd1994/yd-r-hooks.git#4b80484a88795f39f007bc3f8467550234a969e7"
+  resolved "https://github.com/herowyd1994/yd-r-hooks.git#c13b5ba8860ce78b79c5e9b7652a7bb39b9e677b"
   dependencies:
-    "@yd/utils" "https://gitee.com/herowyd1994/yd-utils.git"
+    "@yd/utils" "https://github.com/herowyd1994/yd-utils.git"
 
-"@yd/taro-utils@https://gitee.com/herowyd1994/yd-taro-utils.git":
+"@yd/taro-utils@https://github.com/herowyd1994/yd-utils.git", "@yd/utils@https://github.com/herowyd1994/yd-utils.git":
   version "1.0.0"
-  resolved "https://gitee.com/herowyd1994/yd-taro-utils.git#eefbf27ee13e7b4a10be6437543231d256e379bd"
-  dependencies:
-    "@yd/utils" "https://gitee.com/herowyd1994/yd-utils.git"
-
-"@yd/utils@https://gitee.com/herowyd1994/yd-utils.git":
-  version "1.0.0"
-  resolved "https://gitee.com/herowyd1994/yd-utils.git#ae2f3681a1172d48b8632a7fcd688b13cdb2a007"
+  resolved "https://github.com/herowyd1994/yd-utils.git#e6a333994515dcee3dc4d90d74cff81c9f370a6e"
 
 csstype@^3.0.2:
   version "3.1.3"
