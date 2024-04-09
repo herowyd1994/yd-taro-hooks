@@ -15,7 +15,7 @@
     "dependencies": {
         "@yd/fetch": "https://github.com/herowyd1994/yd-fetch.git",
         "@yd/r-hooks": "https://github.com/herowyd1994/yd-r-hooks.git",
-        "@yd/taro-utils": "https://github.com/herowyd1994/yd-utils.git"
+        "@yd/taro-utils": "https://github.com/herowyd1994/yd-taro-utils.git"
     },
     "devDependencies": {
         "@tarojs/taro": "^3.6.25",

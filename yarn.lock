@@ -69,7 +69,13 @@
   dependencies:
     "@yd/utils" "https://github.com/herowyd1994/yd-utils.git"
 
-"@yd/taro-utils@https://github.com/herowyd1994/yd-utils.git", "@yd/utils@https://github.com/herowyd1994/yd-utils.git":
+"@yd/taro-utils@https://github.com/herowyd1994/yd-taro-utils.git":
+  version "1.0.0"
+  resolved "https://github.com/herowyd1994/yd-taro-utils.git#178153139ea3da0b1807271cb7b9398b2cfa46d7"
+  dependencies:
+    "@yd/utils" "https://github.com/herowyd1994/yd-utils.git"
+
+"@yd/utils@https://github.com/herowyd1994/yd-utils.git":
   version "1.0.0"
   resolved "https://github.com/herowyd1994/yd-utils.git#e6a333994515dcee3dc4d90d74cff81c9f370a6e"
 
