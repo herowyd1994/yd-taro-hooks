@@ -12,7 +12,8 @@ export default <S extends Store>({
     updateUrl,
     delay,
     back: b = false,
-    formatParams = (params) => params
+    formatParams = (params) => params,
+    done
 }: Props<S>) => {
     const fetch = useFetch();
     const { back } = useNavigation();
@@ -26,6 +27,7 @@ export default <S extends Store>({
                 formatParams({ ...(await onValidate()), ...params }),
                 { toast: false }
             );
+            await done?.();
             b && back();
             return res;
         } catch (err: any) {
