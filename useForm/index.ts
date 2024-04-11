@@ -27,7 +27,7 @@ export default <S extends Store>({
                 formatParams({ ...(await onValidate()), ...params }),
                 { toast: false }
             );
-            await done?.();
+            done?.(res);
             b && back();
             return res;
         } catch (err: any) {
