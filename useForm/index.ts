@@ -29,6 +29,7 @@ export default <S extends Store>({
             );
             done?.(res);
             b && back();
+            toast(`${method === 'post' ? '提交' : '更新'}成功`);
             return res;
         } catch (err: any) {
             toast(err.errMsg);
