@@ -59,7 +59,7 @@
 
 "@yd/fetch@https://github.com/herowyd1994/yd-fetch.git":
   version "1.0.0"
-  resolved "https://github.com/herowyd1994/yd-fetch.git#e61af44c2a15f70eed3983a67dedb3a20bcf99d6"
+  resolved "https://github.com/herowyd1994/yd-fetch.git#e3594702f83ef72400ef9066496aa60e08495154"
   dependencies:
     "@yd/utils" "https://github.com/herowyd1994/yd-utils.git"
 
@@ -77,7 +77,7 @@
 
 "@yd/utils@https://github.com/herowyd1994/yd-utils.git":
   version "1.0.0"
-  resolved "https://github.com/herowyd1994/yd-utils.git#e6a333994515dcee3dc4d90d74cff81c9f370a6e"
+  resolved "https://github.com/herowyd1994/yd-utils.git#f99606b5280e6a1461797a28363bc85035cb8369"
 
 csstype@^3.0.2:
   version "3.1.3"
