@@ -27,6 +27,6 @@ export default (config: RequestConfig) =>
                 });
             },
             fail: ({ statusCode: status, errMsg: statusText, header: headers }: any) =>
-                reject({ status, statusText, headers, data: {}, config })
+                reject({ status, statusText, headers, config })
         });
     });
