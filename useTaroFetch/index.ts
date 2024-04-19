@@ -19,7 +19,7 @@ export const createFetch = ({
         await removeStorage('Authorization');
         push('/pages/login/index');
     },
-    onError = ({ statusText }) => toast(statusText),
+    onError = ({ errMsg }) => toast(errMsg),
     transformRequestBody = ({ body }) => body,
     ...config
 }: Config) => {

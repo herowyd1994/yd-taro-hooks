@@ -12,21 +12,24 @@ export default (config: RequestConfig) =>
             data: transformRequestBody!(config),
             header,
             timeout: 60000,
-            success({ data, header, ...res }) {
-                const { code, status, msg, error } = data;
+            success({ data, header, statusCode: status, errMsg, ...res }) {
+                const { code, msg } = data;
                 data.code = code ?? status;
-                data.msg = msg ?? error;
-                res.errMsg = res.errMsg ?? data.msg;
                 return resolve({
                     ...res,
-                    status: res.statusCode,
-                    statusText: res.errMsg,
+                    status,
+                    errMsg: errMsg ?? msg,
                     headers: header as Headers,
                     data,
                     config
                 });
             },
-            fail: ({ statusCode: status, errMsg: statusText, header: headers }: any) =>
-                reject({ status, statusText, headers, config })
+            fail: ({ statusCode: status, header: headers, ...err }: any) =>
+                reject({
+                    ...err,
+                    status,
+                    headers,
+                    config
+                })
         });
     });
