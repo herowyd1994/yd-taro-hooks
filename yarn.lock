@@ -59,13 +59,13 @@
 
 "@yd/fetch@https://github.com/herowyd1994/yd-fetch.git":
   version "1.0.0"
-  resolved "https://github.com/herowyd1994/yd-fetch.git#697924381481e0c09af2ddc7c228f87107ba02bd"
+  resolved "https://github.com/herowyd1994/yd-fetch.git#2f897a35412fbeabdc614b48a8fe982b4b032659"
   dependencies:
     "@yd/utils" "https://github.com/herowyd1994/yd-utils.git"
 
 "@yd/r-hooks@https://github.com/herowyd1994/yd-r-hooks.git":
   version "1.0.0"
-  resolved "https://github.com/herowyd1994/yd-r-hooks.git#c13b5ba8860ce78b79c5e9b7652a7bb39b9e677b"
+  resolved "https://github.com/herowyd1994/yd-r-hooks.git#4408169b18513451205e87cc91a589e185a82f4c"
   dependencies:
     "@yd/utils" "https://github.com/herowyd1994/yd-utils.git"
 

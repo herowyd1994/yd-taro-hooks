@@ -8,7 +8,7 @@ export interface Props<S> {
     updateUrl?: string;
     delay?: number;
     back?: boolean;
-    formatParams?(params: Params<S>): Params<S>;
+    formatParams?(params: Params<S>): Promise<Params<S>> | Params<S>;
     done?(data: any): void;
 }
 type Params<S> = Record<string, any> & Values<S>;

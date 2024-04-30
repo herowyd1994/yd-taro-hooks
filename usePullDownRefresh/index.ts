@@ -25,10 +25,10 @@ export default <D extends Record<string, any>>({
     };
     const onPull = () => !noMore && dispatch({ status: PullDownRefreshStatus.Pulling });
     const getData = async () => {
-        const { list, total } = await get(requestUrl, formatParams({ pageSize, pageNum }))
+        const { list, total } = await get(requestUrl, await formatParams({ pageSize, pageNum }))
             .then((list) => (Array.isArray(list) ? { list, total: list.length } : list))
             .catch(() => ({ list: [], total: 0 }));
-        data = data.concat(formatData(list));
+        data = data.concat(await formatData(list));
         return dispatch({
             status: PullDownRefreshStatus.None,
             noMore: data.length >= total,

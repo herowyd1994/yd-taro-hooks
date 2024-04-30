@@ -24,7 +24,7 @@ export default <S extends Store>({
         try {
             const res = await fetch[method](
                 method === 'post' ? submitUrl! : updateUrl!,
-                formatParams({ ...(await onValidate()), ...params }),
+                await formatParams({ ...(await onValidate()), ...params }),
                 { toast: false }
             );
             done?.(res);
