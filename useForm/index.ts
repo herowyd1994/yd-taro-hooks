@@ -17,14 +17,14 @@ export default <S extends Store>({
 }: Props<S>) => {
     const fetch = useFetch();
     const { back } = useNavigation();
-    const { onValidate, ...verify } = useVerify(store);
+    const { validate, ...verify } = useVerify(store);
     const { done: d1 } = useLock((params) => handler('post', params), delay);
     const { done: d2 } = useLock((params) => handler('put', params), delay);
     const handler = async (method: 'post' | 'put', params?: Record<string, any>) => {
         try {
             const res = await fetch[method](
                 method === 'post' ? submitUrl! : updateUrl!,
-                await formatParams({ ...(await onValidate()), ...params }),
+                await formatParams({ ...(await validate()), ...params }),
                 { toast: false }
             );
             done?.(res);
@@ -37,7 +37,7 @@ export default <S extends Store>({
     };
     return {
         ...verify,
-        onValidate,
+        validate,
         onSubmit: d1 as Handler,
         onUpdate: d2 as Handler
     };

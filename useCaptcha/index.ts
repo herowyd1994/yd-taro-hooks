@@ -24,7 +24,7 @@ export default <S extends Store>({
         formatParams,
         ...props
     });
-    const { onCountDown, onAbort: abort } = useCountDown({
+    const { countDown, abort } = useCountDown({
         time,
         reset,
         delay: 0,
@@ -40,7 +40,7 @@ export default <S extends Store>({
             toast(err.errMsg);
             return Promise.reject(err);
         }
-        return onCountDown();
+        return countDown();
     }, delay);
     const onAbort = async () => {
         await unLock();
