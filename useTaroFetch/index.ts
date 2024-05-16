@@ -5,7 +5,7 @@ import { Config } from '@yd/fetch/types';
 import adapter from './adapter';
 import { getStorage, removeStorage, toast, push } from '@yd/taro-utils';
 import { getCurrentPages } from '@tarojs/taro';
-import { useLock } from '@yd/r-hooks';
+import { throttle } from '@yd/utils';
 
 export { useFetch } from '@yd/fetch';
 export const createFetch = ({
@@ -26,7 +26,7 @@ export const createFetch = ({
     create({
         adapter,
         onHeader,
-        onLogout: useLock(onLogout).done,
+        onLogout: throttle(onLogout),
         onError,
         transformRequestBody,
         ...config
