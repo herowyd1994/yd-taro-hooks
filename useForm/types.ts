@@ -12,4 +12,4 @@ export interface Props<S> {
     done?(data: any): void;
 }
 type Params<S> = Record<string, any> & Values<S>;
-export type Handler = <D>(params?: Record<string, any>) => Promise<D>;
+export type Handler = <D>(params?: Record<string, any>) => Promise<Promise<D>>;
