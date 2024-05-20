@@ -35,7 +35,7 @@ export default (selector: string, fileType: 'jpg' | 'png' = 'png', quality: numb
         ctx.current![`${type}Style`] = color;
         ctx.current![type]();
     };
-    const font = (
+    const fontStyle = (
         size: number,
         family: string,
         align: CanvasTextAlign,
@@ -70,10 +70,10 @@ export default (selector: string, fileType: 'jpg' | 'png' = 'png', quality: numb
         handler(`${type}Text`, [0], str, x, y);
         return y + size;
     };
-    const draw = async (handler: Handler, append: boolean = false, delay: number = 250) => {
+    const draw = async (handler: Handler, clear: boolean = false, delay: number = 250) => {
         const hide = loading('生成中...', delay);
         const { width, height } = canvas.current!;
-        !append && clearRect(0, 0, width, height);
+        clear && clearRect(0, 0, width, height);
         await handler({
             shadowOffsetX,
             shadowOffsetY,
@@ -155,7 +155,7 @@ export default (selector: string, fileType: 'jpg' | 'png' = 'png', quality: numb
         align = 'left',
         baseline = 'top'
     }) => {
-        font(size, family, align, baseline, 'fill', color);
+        fontStyle(size, family, align, baseline, 'fill', color);
         return multLineText(text, x, y, width, size, 'fill');
     };
     const strokeText: Text = ({
@@ -169,18 +169,18 @@ export default (selector: string, fileType: 'jpg' | 'png' = 'png', quality: numb
         align = 'left',
         baseline = 'top'
     }) => {
-        font(size, family, align, baseline, 'stroke', color);
+        fontStyle(size, family, align, baseline, 'stroke', color);
         return multLineText(text, x, y, width, size, 'stroke');
     };
-    const drawImage: DrawImage = (url, dx, dy, dw, dh, r = 0) =>
+    const drawImage: DrawImage = (url, x, y, w, h, r = 0) =>
         new Promise<void>((resolve) => {
             const image = canvas.current!.createImage();
             image!.src = url;
             image!.onload = () => {
                 ctx.current!.save();
-                fillRect(dx, dy, dw, dh, r, 'transparent');
+                roundRect(x, y, w, h, r, 'stroke', 'transparent');
                 ctx.current!.clip();
-                handler('drawImage', [0], image, dx, dy, dw, dh);
+                handler('drawImage', [0], image, x, y, w, h);
                 ctx.current!.restore();
                 resolve();
             };

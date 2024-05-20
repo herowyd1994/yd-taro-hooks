@@ -37,9 +37,9 @@ export type Text = (options: {
 }) => number;
 export type DrawImage = (
     url: string,
-    dx: number,
-    dy: number,
-    dw: number,
-    dh: number,
+    x: number,
+    y: number,
+    w: number,
+    h: number,
     r?: number
 ) => void;
