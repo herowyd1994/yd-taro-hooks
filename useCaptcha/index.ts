@@ -18,7 +18,7 @@ export default <S extends Store>({
     ...props
 }: Props<S>) => {
     const { get } = useFetch();
-    const { tip, ...form } = useForm({
+    const { mobile, tip, ...form } = useForm({
         store: { ...store, tip: { value } },
         delay,
         formatParams,
@@ -35,7 +35,7 @@ export default <S extends Store>({
     });
     const { done: getCaptcha, unLock } = useLock(async () => {
         try {
-            await get(requestUrl, formatParams(await form.mobile.validate()), { toast: false });
+            await get(requestUrl, formatParams(await mobile.validate()), { toast: false });
         } catch (err: any) {
             toast(err.errMsg);
             return Promise.reject(err);
@@ -48,6 +48,7 @@ export default <S extends Store>({
     };
     return {
         ...form,
+        mobile,
         tip: tip.value,
         getCaptcha,
         onAbort
