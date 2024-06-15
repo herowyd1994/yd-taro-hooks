@@ -9,7 +9,7 @@ import { throttle } from '@yd/utils';
 
 export { useFetch } from '@yd/fetch';
 export const createFetch = ({
-    onHeader = async (headers) =>
+    onHeader = async headers =>
         Object.assign(headers, { Authorization: await getStorage('Authorization') }),
     onLogout = async () => {
         const arr = getCurrentPages();

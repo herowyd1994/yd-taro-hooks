@@ -97,8 +97,8 @@ export default (selector: string, fileType: 'jpg' | 'png' = 'png', quality: numb
         });
         await hide();
     };
-    const shadowOffsetX: SetValueDpr = (x) => (ctx.current!.shadowOffsetX = x * dpr);
-    const shadowOffsetY: SetValueDpr = (y) => (ctx.current!.shadowOffsetY = y * dpr);
+    const shadowOffsetX: SetValueDpr = x => (ctx.current!.shadowOffsetX = x * dpr);
+    const shadowOffsetY: SetValueDpr = y => (ctx.current!.shadowOffsetY = y * dpr);
     const createLinearGradient: CanvasRenderingContext2D['createLinearGradient'] = (
         x0,
         y0,
@@ -113,8 +113,8 @@ export default (selector: string, fileType: 'jpg' | 'png' = 'png', quality: numb
         y1,
         r1
     ) => handler('createRadialGradient', [], x0, y0, r0, x1, y1, r1);
-    const lineWidth: SetValueDpr = (w) => (ctx.current!.lineWidth = w * dpr);
-    const miterLimit: SetValueDpr = (m) => (ctx.current!.miterLimit = m * dpr);
+    const lineWidth: SetValueDpr = w => (ctx.current!.lineWidth = w * dpr);
+    const miterLimit: SetValueDpr = m => (ctx.current!.miterLimit = m * dpr);
     const clearRect: CanvasRenderingContext2D['clearRect'] = (x, y, w, h) =>
         handler('clearRect', [], x, y, w, h);
     const fillRect: Rect = (x, y, w, h, r = 0, color = '#000000') =>
@@ -173,7 +173,7 @@ export default (selector: string, fileType: 'jpg' | 'png' = 'png', quality: numb
         return multLineText(text, x, y, width, size, 'stroke');
     };
     const drawImage: DrawImage = (url, x, y, w, h, r = 0) =>
-        new Promise<void>((resolve) => {
+        new Promise<void>(resolve => {
             const image = canvas.current!.createImage();
             image!.src = url;
             image!.onload = () => {

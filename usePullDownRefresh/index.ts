@@ -8,8 +8,8 @@ export const PullDownRefreshStatus = Status;
 export default <D extends Record<string, any>>({
     immediate = true,
     requestUrl,
-    formatParams = (params) => params,
-    formatData = (data) => data
+    formatParams = params => params,
+    formatData = data => data
 }: Props<D>) => {
     const { get } = useFetch();
     let { status, data, noMore, pageSize, pageNum, dispatch, reset } = useStore<Store<D>>({
@@ -26,7 +26,7 @@ export default <D extends Record<string, any>>({
     const onPull = () => !noMore && dispatch({ status: PullDownRefreshStatus.Pulling });
     const getData = async () => {
         const { list, total } = await get(requestUrl, await formatParams({ pageSize, pageNum }))
-            .then((list) => (Array.isArray(list) ? { list, total: list.length } : list))
+            .then(list => (Array.isArray(list) ? { list, total: list.length } : list))
             .catch(() => ({ list: [], total: 0 }));
         data = data.concat(await formatData(list));
         return dispatch({

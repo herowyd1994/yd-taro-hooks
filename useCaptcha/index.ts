@@ -13,8 +13,8 @@ export default <S extends Store>({
     reset = true,
     delay,
     requestUrl,
-    formatTime = (time) => `${time}s`,
-    formatParams = (params) => params,
+    formatTime = time => `${time}s`,
+    formatParams = params => params,
     ...props
 }: Props<S>) => {
     const { get } = useFetch();
@@ -28,7 +28,7 @@ export default <S extends Store>({
         time,
         reset,
         delay: 0,
-        formatTime: (t) => {
+        formatTime: t => {
             t === time ? tip.reset() : tip.setValue(formatTime(t));
             return t;
         }

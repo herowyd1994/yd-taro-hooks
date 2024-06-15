@@ -12,14 +12,14 @@ export default <S extends Store>({
     updateUrl,
     delay,
     back: b = false,
-    formatParams = (params) => params,
+    formatParams = params => params,
     done
 }: Props<S>) => {
     const fetch = useFetch();
     const { back } = useNavigation();
     const { validate, ...verify } = useVerify(store);
-    const { done: d1 } = useLock((params) => handler('post', params), delay);
-    const { done: d2 } = useLock((params) => handler('put', params), delay);
+    const { done: d1 } = useLock(params => handler('post', params), delay);
+    const { done: d2 } = useLock(params => handler('put', params), delay);
     const handler = async (method: 'post' | 'put', params?: Record<string, any>) => {
         try {
             const res = await fetch[method](
