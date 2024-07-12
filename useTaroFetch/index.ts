@@ -9,8 +9,7 @@ import { throttle } from '@yd/utils';
 
 export { useFetch } from '@yd/fetch';
 export const createFetch = ({
-    onHeader = async headers =>
-        Object.assign(headers, { Authorization: await getStorage('Authorization') }),
+    onHeader = async headers => Object.assign(headers, { Authorization: await getStorage('Authorization') }),
     onLogout = async () => {
         const arr = getCurrentPages();
         if (arr[arr.length - 1].route === 'pages/login/index') {

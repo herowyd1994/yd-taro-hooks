@@ -12,9 +12,7 @@ export default <P extends Record<string, any>, R extends Record<string, any> = a
     const { path, params } = useRouter();
     const methods = (['push', 'replace', 'reLaunch', 'switchTab'] as MethodKeys[]).reduce(
         (obj, key) => {
-            const { done } = useLock((routeKey, params = {}) =>
-                utils[key](routeNames![routeKey], params)
-            );
+            const { done } = useLock((routeKey, params = {}) => utils[key](routeNames![routeKey], params));
             return { ...obj, [key]: done };
         },
         {} as Record<MethodKeys, MethodFn<keyof R>>

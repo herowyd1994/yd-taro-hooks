@@ -11,9 +11,7 @@ export default (selector: string, fileType: 'jpg' | 'png' = 'png', quality: numb
     const ctx = useRef<CanvasRenderingContext2D>();
     const { pixelRatio: dpr } = getSystemInfo();
     const handler = (key: keyof CanvasRenderingContext2D, skip: any[], ...args: any[]) =>
-        (ctx.current![key] as any)(
-            ...args.map((item, i) => (skip.includes(i) ? item : item * dpr))
-        );
+        (ctx.current![key] as any)(...args.map((item, i) => (skip.includes(i) ? item : item * dpr)));
     const roundRect = (
         x: number,
         y: number,
@@ -48,14 +46,7 @@ export default (selector: string, fileType: 'jpg' | 'png' = 'png', quality: numb
         ctx.current!.textBaseline = baseline;
         ctx.current![`${type}Style`] = color;
     };
-    const multLineText = (
-        text: string,
-        x: number,
-        y: number,
-        w: number,
-        size: number,
-        type: 'stroke' | 'fill'
-    ) => {
+    const multLineText = (text: string, x: number, y: number, w: number, size: number, type: 'stroke' | 'fill') => {
         w = w * dpr;
         let str = text[0] ?? '';
         for (let i = 1; i < text.length; i++) {
@@ -99,50 +90,25 @@ export default (selector: string, fileType: 'jpg' | 'png' = 'png', quality: numb
     };
     const shadowOffsetX: SetValueDpr = x => (ctx.current!.shadowOffsetX = x * dpr);
     const shadowOffsetY: SetValueDpr = y => (ctx.current!.shadowOffsetY = y * dpr);
-    const createLinearGradient: CanvasRenderingContext2D['createLinearGradient'] = (
-        x0,
-        y0,
-        x1,
-        y1
-    ) => handler('createLinearGradient', [], x0, y0, x1, y1);
-    const createRadialGradient: CanvasRenderingContext2D['createRadialGradient'] = (
-        x0,
-        y0,
-        r0,
-        x1,
-        y1,
-        r1
-    ) => handler('createRadialGradient', [], x0, y0, r0, x1, y1, r1);
+    const createLinearGradient: CanvasRenderingContext2D['createLinearGradient'] = (x0, y0, x1, y1) =>
+        handler('createLinearGradient', [], x0, y0, x1, y1);
+    const createRadialGradient: CanvasRenderingContext2D['createRadialGradient'] = (x0, y0, r0, x1, y1, r1) =>
+        handler('createRadialGradient', [], x0, y0, r0, x1, y1, r1);
     const lineWidth: SetValueDpr = w => (ctx.current!.lineWidth = w * dpr);
     const miterLimit: SetValueDpr = m => (ctx.current!.miterLimit = m * dpr);
-    const clearRect: CanvasRenderingContext2D['clearRect'] = (x, y, w, h) =>
-        handler('clearRect', [], x, y, w, h);
-    const fillRect: Rect = (x, y, w, h, r = 0, color = '#000000') =>
-        roundRect(x, y, w, h, r, 'fill', color);
-    const strokeRect: Rect = (x, y, w, h, r = 0, color = '#000000') =>
-        roundRect(x, y, w, h, r, 'stroke', color);
+    const clearRect: CanvasRenderingContext2D['clearRect'] = (x, y, w, h) => handler('clearRect', [], x, y, w, h);
+    const fillRect: Rect = (x, y, w, h, r = 0, color = '#000000') => roundRect(x, y, w, h, r, 'fill', color);
+    const strokeRect: Rect = (x, y, w, h, r = 0, color = '#000000') => roundRect(x, y, w, h, r, 'stroke', color);
     const lineTo: CanvasRenderingContext2D['lineTo'] = (x, y) => handler('lineTo', [], x, y);
     const moveTo: CanvasRenderingContext2D['moveTo'] = (x, y) => handler('moveTo', [], x, y);
     const arcTo: CanvasRenderingContext2D['arcTo'] = (x1, y1, x2, y2, radius) =>
         handler('arcTo', [], x1, y1, x2, y2, radius);
-    const bezierCurveTo: CanvasRenderingContext2D['bezierCurveTo'] = (
-        cp1x,
-        cp1y,
-        cp2x,
-        cp2y,
-        x,
-        y
-    ) => handler('bezierCurveTo', [], cp1x, cp1y, cp2x, cp2y, x, y);
+    const bezierCurveTo: CanvasRenderingContext2D['bezierCurveTo'] = (cp1x, cp1y, cp2x, cp2y, x, y) =>
+        handler('bezierCurveTo', [], cp1x, cp1y, cp2x, cp2y, x, y);
     const quadraticCurveTo: CanvasRenderingContext2D['quadraticCurveTo'] = (cpx, cpy, x, y) =>
         handler('quadraticCurveTo', [], cpx, cpy, x, y);
-    const arc: CanvasRenderingContext2D['arc'] = (
-        x,
-        y,
-        radius,
-        startAngle,
-        endAngle,
-        counterclockwise
-    ) => handler('arc', [3, 4, 5], x, y, radius, startAngle, endAngle, counterclockwise);
+    const arc: CanvasRenderingContext2D['arc'] = (x, y, radius, startAngle, endAngle, counterclockwise) =>
+        handler('arc', [3, 4, 5], x, y, radius, startAngle, endAngle, counterclockwise);
     const rect: CanvasRenderingContext2D['rect'] = (x, y, w, h) => handler('rect', [], x, y, w, h);
     const fillText: Text = ({
         text,
