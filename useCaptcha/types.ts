@@ -8,7 +8,7 @@ export interface Props<S> extends Partial<CountDownProps>, Omit<FormProps<Store<
     store: Store<S>;
     tip: string;
     requestUrl: string;
-    formatRequestParams: FormProps<Store<S>>['formatParams'];
-    formatSubmitParams: FormProps<Store<S>>['formatParams'];
+    formatRequestParams?: FormProps<Store<S>>['formatParams'];
+    formatSubmitParams?: FormProps<Store<S>>['formatParams'];
 }
 type Store<S> = S & { mobile: StoreOpts };
