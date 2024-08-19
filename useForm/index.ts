@@ -27,7 +27,7 @@ export default <S extends Store>({
                 await formatParams({ ...(await validate()), ...params }),
                 { toast: false }
             );
-            done?.(res);
+            await done?.(res);
             b && back();
             return res;
         } catch (err: any) {
