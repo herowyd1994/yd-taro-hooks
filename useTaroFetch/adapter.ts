@@ -6,7 +6,7 @@ import { RequestConfig, Response } from '@yd/fetch/types';
 export default (config: RequestConfig) =>
     new Promise<Response>((resolve, reject) => {
         const { method, headers: header, transformRequestUrl, transformRequestBody } = config;
-        return request({
+        request({
             url: transformRequestUrl!(config),
             method,
             data: transformRequestBody!(config),
@@ -15,7 +15,7 @@ export default (config: RequestConfig) =>
             success({ data, header, statusCode: status, errMsg, ...res }) {
                 const { code, msg } = data;
                 data.code = code ?? status;
-                return resolve({
+                resolve({
                     ...res,
                     status,
                     errMsg: errMsg ?? msg,
