@@ -1,8 +1,8 @@
 /** @format */
 
 export interface Props<D> {
-    immediate?: boolean;
     requestUrl: string;
+    immediate?: boolean;
     formatParams?(params: Params): Promise<Params> | Params;
     formatData?(data: any): Promise<D[]> | D[];
 }

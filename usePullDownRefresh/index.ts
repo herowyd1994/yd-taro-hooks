@@ -1,10 +1,9 @@
 /** @format */
 
-import { useStore, useMount, useUpdate } from '@yd/r-hooks';
+import { useStore, useMount, useUpdate, useLock } from '@yd/r-hooks';
 import { useFetch } from '../index';
 import { Props, Status, Store } from './types';
 
-export const PullDownRefreshStatus = Status;
 export default <D extends Record<string, any>>({
     immediate = true,
     requestUrl,
@@ -13,30 +12,30 @@ export default <D extends Record<string, any>>({
 }: Props<D>) => {
     const { get } = useFetch();
     let { status, data, noMore, pageSize, pageNum, dispatch, reset } = useStore<Store<D>>({
-        status: PullDownRefreshStatus.None,
+        status: Status.None,
         noMore: false,
         pageSize: 10,
         pageNum: 1,
         data: []
     });
-    const onRefresh = async () => {
+    const { done: onRefresh } = useLock(async () => {
         await reset(['noMore', 'data', 'pageNum']);
-        return dispatch({ status: PullDownRefreshStatus.Refreshing });
-    };
-    const onPull = () => !noMore && dispatch({ status: PullDownRefreshStatus.Pulling });
+        await dispatch({ status: Status.Refreshing });
+    });
+    const { done: onPull } = useLock(() => !noMore && dispatch({ status: Status.Pulling }));
     const getData = async () => {
         const { list, total } = await get(requestUrl, await formatParams({ pageSize, pageNum }))
             .then(list => (Array.isArray(list) ? { list, total: list.length } : list))
             .catch(() => ({ list: [], total: 0 }));
         data = data.concat(await formatData(list));
         return dispatch({
-            status: PullDownRefreshStatus.None,
+            status: Status.None,
             noMore: data.length >= total,
             data,
             pageNum: pageNum + 1
         });
     };
-    useUpdate(() => status !== PullDownRefreshStatus.None && getData(), [status]);
+    useUpdate(() => status !== Status.None && getData(), [status]);
     useMount(() => immediate && onRefresh());
     return {
         status,
