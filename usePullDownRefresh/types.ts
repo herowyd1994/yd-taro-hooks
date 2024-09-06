@@ -1,14 +1,13 @@
 /** @format */
 
 export interface Props<D> {
-    requestUrl: string;
     immediate?: boolean;
-    formatParams?(params: Params): Promise<Params> | Params;
+    requestUrl: string;
+    params?: Record<string, any>;
+    formatParams?(
+        params: { pageSize: number; pageNum: number } & Record<string, any>
+    ): Promise<Record<string, any>> | Record<string, any>;
     formatData?(data: any): Promise<D[]> | D[];
-}
-interface Params extends Record<string, any> {
-    pageSize: number;
-    pageNum: number;
 }
 export interface Store<D> {
     status: Status;

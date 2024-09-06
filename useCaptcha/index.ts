@@ -12,10 +12,9 @@ export default <S extends Store>({
     time = 60,
     reset = true,
     delay,
-    requestUrl,
+    request: { url, params, formatParams: f, ...config } = { url: '' },
     formatTime = time => `${time}s`,
-    formatRequestParams = params => params,
-    formatSubmitParams: formatParams,
+    formatParams = params => params,
     ...props
 }: Props<S>) => {
     const { get } = useFetch();
@@ -36,7 +35,7 @@ export default <S extends Store>({
     });
     const { done: getCaptcha, unLock } = useLock(async () => {
         try {
-            await get(requestUrl, formatRequestParams(await mobile.validate()), { toast: false });
+            await get(url, f({ ...(await mobile.validate()), ...params }), { toast: false, ...config });
             toast('发送成功');
         } catch (err: any) {
             toast(err.errMsg);

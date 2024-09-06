@@ -7,6 +7,7 @@ import { Props, Status, Store } from './types';
 export default <D extends Record<string, any>>({
     immediate = true,
     requestUrl,
+    params,
     formatParams = params => params,
     formatData = data => data
 }: Props<D>) => {
@@ -20,11 +21,11 @@ export default <D extends Record<string, any>>({
     });
     const { done: onRefresh } = useLock(async () => {
         await reset(['noMore', 'data', 'pageNum']);
-        await dispatch({ status: Status.Refreshing });
+        return dispatch({ status: Status.Refreshing });
     });
     const { done: onPull } = useLock(() => !noMore && dispatch({ status: Status.Pulling }));
     const getData = async () => {
-        const { list, total } = await get(requestUrl, await formatParams({ pageSize, pageNum }))
+        const { list, total } = await get(requestUrl, await formatParams({ pageSize, pageNum, ...params }))
             .then(list => (Array.isArray(list) ? { list, total: list.length } : list))
             .catch(() => ({ list: [], total: 0 }));
         data = data.concat(await formatData(list));

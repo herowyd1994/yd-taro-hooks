@@ -8,8 +8,7 @@ export interface Props<S> {
     updateUrl?: string;
     delay?: number;
     back?: boolean;
-    formatParams?(params: Params<S>): Promise<Params<S>> | Params<S>;
-    done?(data: any): Promise<void> | void;
+    formatParams?(params: Record<string, any> & Values<S>): Promise<Record<string, any>> | Record<string, any>;
+    done?<D>(data: D): any;
 }
-type Params<S> = Record<string, any> & Values<S>;
 export type Handler = <D>(params?: Record<string, any>) => Promise<Promise<D>>;
