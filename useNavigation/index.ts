@@ -1,7 +1,7 @@
 /** @format */
 
 import * as utils from '@yd/taro-utils';
-import { Back, MethodKeys, MethodFn } from './types';
+import { Back, Methods } from './types';
 import { useRouter } from '@tarojs/taro';
 import { useLock } from '@yd/r-hooks';
 
@@ -11,12 +11,12 @@ export default <P extends Record<string, any>, R extends Record<string, any> = a
     delay?: number
 ) => {
     const { path, params } = useRouter();
-    const methods = (['push', 'replace', 'reLaunch', 'switchTab'] as MethodKeys[]).reduce(
-        (obj, key) => {
-            const { done } = useLock((routeKey, params = {}) => utils[key](routeNames![routeKey], params), delay);
-            return { ...obj, [key]: done };
+    const methods = ['push', 'replace', 'reLaunch', 'switchTab'].reduce(
+        (obj, method) => {
+            const { done } = useLock((key, params = {}) => utils[method](routeNames![key], params), delay);
+            return { ...obj, [method]: done };
         },
-        {} as Record<MethodKeys, MethodFn<keyof R>>
+        {} as Methods<keyof R>
     );
     const { done } = useLock(utils.back, delay);
     return {

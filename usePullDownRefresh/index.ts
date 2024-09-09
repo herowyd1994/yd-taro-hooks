@@ -20,7 +20,7 @@ export default <D extends Record<string, any>>({
         data: []
     });
     const { done: onRefresh } = useLock(async () => {
-        await reset(['noMore', 'data', 'pageNum']);
+        await reset(['noMore', 'pageNum', 'data']);
         return dispatch({ status: Status.Refreshing });
     });
     const { done: onPull } = useLock(() => !noMore && dispatch({ status: Status.Pulling }));

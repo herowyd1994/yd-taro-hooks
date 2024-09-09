@@ -9,6 +9,6 @@ export interface Props<S> {
     delay?: number;
     back?: boolean;
     formatParams?(params: Record<string, any> & Values<S>): Promise<Record<string, any>> | Record<string, any>;
-    done?<D>(data: D): any;
+    done?(data: any): any;
 }
 export type Handler = <D>(params?: Record<string, any>) => Promise<Promise<D>>;
