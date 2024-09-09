@@ -59,7 +59,7 @@
 
 "@yd/fetch@https://github.com/herowyd1994/yd-fetch.git":
   version "1.0.0"
-  resolved "https://github.com/herowyd1994/yd-fetch.git#1cb4af6b8ceda390a4efba80d58e7f7ed38b388e"
+  resolved "https://github.com/herowyd1994/yd-fetch.git#086858b5bd2eaa4b6f9d6e1a403a23262a7ea59a"
   dependencies:
     "@yd/utils" "https://github.com/herowyd1994/yd-utils.git"
 
@@ -71,13 +71,13 @@
 
 "@yd/taro-utils@https://github.com/herowyd1994/yd-taro-utils.git":
   version "1.0.0"
-  resolved "https://github.com/herowyd1994/yd-taro-utils.git#b8fbe9a264234ece5b288035c9c219d8ee1faead"
+  resolved "https://github.com/herowyd1994/yd-taro-utils.git#3ec8b33608ac25daf354e020b9be5cd72c8e8930"
   dependencies:
     "@yd/utils" "https://github.com/herowyd1994/yd-utils.git"
 
 "@yd/utils@https://github.com/herowyd1994/yd-utils.git":
   version "1.0.0"
-  resolved "https://github.com/herowyd1994/yd-utils.git#efa82f7a72adc663923b337dbf744a6e5db99a99"
+  resolved "https://github.com/herowyd1994/yd-utils.git#0aa678ba1050425c92f992d64c4077f60fcc2238"
 
 csstype@^3.0.2:
   version "3.1.3"

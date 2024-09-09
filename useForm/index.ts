@@ -31,7 +31,7 @@ export default <S extends Store>({
             toast(`${method === 'post' ? '提交' : '更新'}成功`);
             b && back();
             return res;
-        } catch (err: any) {
+        } catch (err) {
             toast(err.errMsg);
             return Promise.reject(err);
         }

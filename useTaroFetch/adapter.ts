@@ -15,21 +15,8 @@ export default (config: RequestConfig) =>
             success({ data, header, statusCode: status, errMsg, ...res }) {
                 const { code, msg } = data;
                 data.code = code ?? status;
-                resolve({
-                    ...res,
-                    status,
-                    errMsg: errMsg ?? msg,
-                    headers: header as Headers,
-                    data,
-                    config
-                });
+                resolve({ ...res, status, errMsg: errMsg ?? msg, headers: header as Headers, data, config });
             },
-            fail: ({ statusCode: status, header: headers, ...err }: any) =>
-                reject({
-                    ...err,
-                    status,
-                    headers,
-                    config
-                })
+            fail: ({ statusCode: status, header: headers, ...err }) => reject({ ...err, status, headers, config })
         });
     });
