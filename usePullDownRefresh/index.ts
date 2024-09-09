@@ -25,7 +25,10 @@ export default <D extends Record<string, any>>({
     });
     const { done: onPull } = useLock(() => !noMore && dispatch({ status: Status.Pulling }));
     const getData = async () => {
-        const { list, total } = await get(requestUrl, await formatParams({ pageSize, pageNum, ...params }))
+        const { list, total } = await get(
+            requestUrl,
+            await formatParams({ pageSize, pageNum, ...params })
+        )
             .then(list => (Array.isArray(list) ? { list, total: list.length } : list))
             .catch(() => ({ list: [], total: 0 }));
         data = data.concat(await formatData(list));

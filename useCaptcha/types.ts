@@ -11,7 +11,9 @@ export interface Props<S> extends Partial<CountDownProps>, FormProps<Store<S>> {
     request: {
         url: string;
         params?: Record<string, any>;
-        formatParams?(params: Values<S> & Record<string, any>): Promise<Record<string, any>> | Record<string, any>;
+        formatParams?(
+            params: Values<S> & Record<string, any>
+        ): Promise<Record<string, any>> | Record<string, any>;
     } & Partial<Omit<RequestConfig, 'toast'>>;
 }
 type Store<S> = S & { mobile: StoreOpts };

@@ -35,4 +35,11 @@ export type Text = (options: {
     align?: CanvasTextAlign;
     baseline?: CanvasTextBaseline;
 }) => number;
-export type DrawImage = (url: string, x: number, y: number, w: number, h: number, r?: number) => void;
+export type DrawImage = (
+    url: string,
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    r?: number
+) => void;

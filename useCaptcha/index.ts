@@ -35,7 +35,10 @@ export default <S extends Store>({
     });
     const { done: getCaptcha, unLock } = useLock(async () => {
         try {
-            await get(url, await f({ ...(await mobile.validate()), ...params }), { toast: false, ...config });
+            await get(url, await f({ ...(await mobile.validate()), ...params }), {
+                toast: false,
+                ...config
+            });
             toast('发送成功');
         } catch (err) {
             toast(err.errMsg);
