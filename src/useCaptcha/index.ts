@@ -51,9 +51,9 @@ export default <S extends Store>({
         return abort();
     };
     return {
-        ...form,
         mobile,
         tip: tip.value,
+        ...form,
         getCaptcha,
         onAbort
     };

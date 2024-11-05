@@ -6,14 +6,14 @@ import { Props } from './types';
 import { Action, Store } from '@yd/r-hooks/types/useVerify/types';
 
 export default <S extends Store>({ reset: r = true, ...props }: Props<S>) => {
-    const { dispatch: d, reset, onSubmit: submit, onUpdate: update, ...form } = useForm(props);
-    const { visible, dispatch } = useStore({ visible: false });
+    const { dispatch, reset, onSubmit: submit, onUpdate: update, ...form } = useForm(props);
+    const { visible, dispatch: d } = useStore({ visible: false });
     const onShow = async (params?: Action<S>) => {
-        dispatch({ visible: true });
-        params && d(params);
+        d({ visible: true });
+        params && dispatch(params);
     };
     const onClose = () => {
-        dispatch({ visible: false });
+        d({ visible: false });
         r && reset();
     };
     const onSubmit = async (params?: Record<string, any>) => {
@@ -25,6 +25,8 @@ export default <S extends Store>({ reset: r = true, ...props }: Props<S>) => {
         onClose();
     };
     return {
+        dispatch,
+        reset,
         ...form,
         visible,
         onShow,

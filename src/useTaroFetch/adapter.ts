@@ -24,7 +24,7 @@ export default (config: RequestConfig) =>
                     config
                 });
             },
-            fail: ({ statusCode: status, header: headers, ...err }) =>
+            fail: ({ statusCode: status, header: headers, ...err }: any) =>
                 reject({
                     ...err,
                     status,

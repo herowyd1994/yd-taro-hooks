@@ -37,9 +37,9 @@ export default ({ store, tip: value, time = 60, reset = true, delay, request: { 
         return abort();
     };
     return {
-        ...form,
         mobile,
         tip: tip.value,
+        ...form,
         getCaptcha,
         onAbort
     };

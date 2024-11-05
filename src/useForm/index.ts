@@ -11,7 +11,7 @@ export default <S extends Store>({
     submitUrl,
     updateUrl,
     delay,
-    toast: t = true,
+    toast: t = () => '',
     back: b = false,
     formatParams = params => params,
     done
@@ -29,7 +29,7 @@ export default <S extends Store>({
                 { toast: false }
             );
             await done?.(res);
-            t && toast(`${method === 'post' ? '提交' : '更新'}成功`);
+            toast(t(method) || `${method === 'post' ? '提交' : '更新'}成功`);
             b && back();
             return res;
         } catch (err) {
@@ -38,8 +38,8 @@ export default <S extends Store>({
         }
     };
     return {
-        ...verify,
         validate,
+        ...verify,
         onSubmit: d1 as Handler,
         onUpdate: d2 as Handler
     };

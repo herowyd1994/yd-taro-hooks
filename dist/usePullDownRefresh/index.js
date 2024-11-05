@@ -3,7 +3,7 @@ import { useFetch } from '../index';
 import { Status } from './types';
 export default ({ immediate = true, requestUrl, params, formatParams = params => params, formatData = data => data }) => {
     const { get } = useFetch();
-    let { status, data, noMore, pageSize, pageNum, dispatch, reset } = useStore({
+    let { status, noMore, pageSize, pageNum, data, dispatch, reset } = useStore({
         status: Status.None,
         noMore: false,
         pageSize: 10,

@@ -1,14 +1,14 @@
 import { useForm } from '../index';
 import { useStore } from '@yd/r-hooks';
 export default ({ reset: r = true, ...props }) => {
-    const { dispatch: d, reset, onSubmit: submit, onUpdate: update, ...form } = useForm(props);
-    const { visible, dispatch } = useStore({ visible: false });
+    const { dispatch, reset, onSubmit: submit, onUpdate: update, ...form } = useForm(props);
+    const { visible, dispatch: d } = useStore({ visible: false });
     const onShow = async (params) => {
-        dispatch({ visible: true });
-        params && d(params);
+        d({ visible: true });
+        params && dispatch(params);
     };
     const onClose = () => {
-        dispatch({ visible: false });
+        d({ visible: false });
         r && reset();
     };
     const onSubmit = async (params) => {
@@ -20,6 +20,8 @@ export default ({ reset: r = true, ...props }) => {
         onClose();
     };
     return {
+        dispatch,
+        reset,
         ...form,
         visible,
         onShow,
