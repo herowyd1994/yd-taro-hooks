@@ -1,7 +1,7 @@
 import { useVerify, useLock } from '@yd/r-hooks';
 import { useFetch, useNavigation } from '../index';
 import { toast } from '@yd/taro-utils';
-export default ({ store, submitUrl, updateUrl, delay, toast: t = () => '', back: b = false, formatParams = params => params, done }) => {
+export default ({ store, submitUrl, updateUrl, delay, toast: t = true, back: b = false, formatParams = params => params, done }) => {
     const fetch = useFetch();
     const { back } = useNavigation();
     const { validate, ...verify } = useVerify(store);
@@ -11,7 +11,7 @@ export default ({ store, submitUrl, updateUrl, delay, toast: t = () => '', back:
         try {
             const res = await fetch[method](method === 'post' ? submitUrl : updateUrl, await formatParams({ ...(await validate()), ...params }), { toast: false });
             await done?.(res);
-            toast(t(method) || `${method === 'post' ? '提交' : '更新'}成功`);
+            t && toast(`${method === 'post' ? '提交' : '更新'}成功`);
             b && back();
             return res;
         }
