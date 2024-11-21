@@ -1,21 +1,17 @@
 import { useStore, useMount, useUpdate, useLock } from '@yd/r-hooks';
 import { useFetch } from '../index';
 import { Status } from './types';
-export default ({ immediate = true, requestUrl, params, formatParams = params => params, formatData = data => data }) => {
+export default ({ immediate = true, pageSize = 10, requestUrl, params, formatParams = params => params, formatData = data => data }) => {
     const { get } = useFetch();
-    let { status, noMore, pageSize, pageNum, data, dispatch, reset } = useStore({
+    let { status, noMore, pageNum, data, dispatch, reset } = useStore({
         status: Status.None,
         noMore: false,
-        pageSize: 10,
         pageNum: 1,
         data: []
     });
-    const { done: onRefresh } = useLock(async () => {
-        await reset(['noMore', 'pageNum', 'data']);
-        return dispatch({ status: Status.Refreshing });
-    });
-    const { done: onPull } = useLock(() => !noMore && dispatch({ status: Status.Pulling }));
-    const getData = async () => {
+    const onRefresh = () => dispatch({ status: Status.Refreshing, noMore: false, pageNum: 1, data: [] });
+    const onPull = () => !noMore && dispatch({ status: Status.Pulling });
+    const { done } = useLock(async () => {
         const { list, total } = await get(requestUrl, await formatParams({ pageSize, pageNum, ...params }))
             .then(list => (Array.isArray(list) ? { list, total: list.length } : list))
             .catch(() => ({ list: [], total: 0 }));
@@ -23,11 +19,11 @@ export default ({ immediate = true, requestUrl, params, formatParams = params =>
         return dispatch({
             status: Status.None,
             noMore: data.length >= total,
-            data,
-            pageNum: pageNum + 1
+            pageNum: pageNum + 1,
+            data
         });
-    };
-    useUpdate(() => status !== Status.None && getData(), [status]);
+    });
+    useUpdate(() => status !== Status.None && done(), [status]);
     useMount(() => immediate && onRefresh());
     return {
         status,
