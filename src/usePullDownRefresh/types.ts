@@ -2,6 +2,7 @@
 
 export interface Props<D> {
     immediate?: boolean;
+    pageSize?: number;
     requestUrl: string;
     params?: Record<string, any>;
     formatParams?(
@@ -12,7 +13,6 @@ export interface Props<D> {
 export interface Store<D> {
     status: Status;
     noMore: boolean;
-    pageSize: number;
     pageNum: number;
     data: D[];
 }

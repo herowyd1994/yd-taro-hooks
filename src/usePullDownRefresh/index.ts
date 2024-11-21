@@ -6,25 +6,23 @@ import { Props, Status, Store } from './types';
 
 export default <D extends Record<string, any>>({
     immediate = true,
+    pageSize = 10,
     requestUrl,
     params,
     formatParams = params => params,
     formatData = data => data
 }: Props<D>) => {
     const { get } = useFetch();
-    let { status, noMore, pageSize, pageNum, data, dispatch, reset } = useStore<Store<D>>({
+    let { status, noMore, pageNum, data, dispatch, reset } = useStore<Store<D>>({
         status: Status.None,
         noMore: false,
-        pageSize: 10,
         pageNum: 1,
         data: []
     });
-    const { done: onRefresh } = useLock(async () => {
-        await reset(['noMore', 'pageNum', 'data']);
-        return dispatch({ status: Status.Refreshing });
-    });
-    const { done: onPull } = useLock(() => !noMore && dispatch({ status: Status.Pulling }));
-    const getData = async () => {
+    const onRefresh = () =>
+        dispatch({ status: Status.Refreshing, noMore: false, pageNum: 1, data: [] });
+    const onPull = () => !noMore && dispatch({ status: Status.Pulling });
+    const { done } = useLock(async () => {
         const { list, total } = await get(
             requestUrl,
             await formatParams({ pageSize, pageNum, ...params })
@@ -35,11 +33,11 @@ export default <D extends Record<string, any>>({
         return dispatch({
             status: Status.None,
             noMore: data.length >= total,
-            data,
-            pageNum: pageNum + 1
+            pageNum: pageNum + 1,
+            data
         });
-    };
-    useUpdate(() => status !== Status.None && getData(), [status]);
+    });
+    useUpdate(() => status !== Status.None && done(), [status]);
     useMount(() => immediate && onRefresh());
     return {
         status,

@@ -29,7 +29,7 @@
     "@tarojs/runtime" "4.0.7"
     "@types/postcss-url" "^10.0.4"
 
-"@types/node@*", "@types/node@^22.8.6":
+"@types/node@*":
   version "22.8.6"
   resolved "https://registry.npmmirror.com/@types/node/-/node-22.8.6.tgz#e8a0c0871623283d8b3ef7d7b9b1bfdfd3028e22"
   integrity sha512-tosuJYKrIqjQIlVCM4PEGxOmyg3FCPa/fViuJChnGeEIhjA46oy8FMVoF9su1/v8PNs2a8Q0iFNyOx0uOF91nw==
@@ -43,19 +43,6 @@
   dependencies:
     "@types/node" "*"
     postcss "^8.0.0"
-
-"@types/prop-types@*":
-  version "15.7.12"
-  resolved "https://registry.npmmirror.com/@types/prop-types/-/prop-types-15.7.12.tgz#12bb1e2be27293c1406acb6af1c3f3a1481d98c6"
-  integrity sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==
-
-"@types/react@^18.3.12":
-  version "18.3.12"
-  resolved "https://registry.npmmirror.com/@types/react/-/react-18.3.12.tgz#99419f182ccd69151813b7ee24b792fe08774f60"
-  integrity sha512-D2wOSq/d6Agt28q7rSI3jhU7G6aiuzljDGZ2hTZHIkrTLUI+AF3WMeKkEZ9nN2fkBAlcktT6vcZjDFiIhMYEQw==
-  dependencies:
-    "@types/prop-types" "*"
-    csstype "^3.0.2"
 
 "@yd/fetch@https://github.com/herowyd1994/yd-fetch.git":
   version "1.0.1"
@@ -78,11 +65,6 @@
 "@yd/utils@https://github.com/herowyd1994/yd-utils.git":
   version "1.0.1"
   resolved "https://github.com/herowyd1994/yd-utils.git#10fbfc8bf1319085c771879b1015a60d75ba13a6"
-
-csstype@^3.0.2:
-  version "3.1.3"
-  resolved "https://registry.npmmirror.com/csstype/-/csstype-3.1.3.tgz#d80ff294d114fb0e6ac500fbf85b60137d7eff81"
-  integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
 
 nanoid@^3.3.7:
   version "3.3.7"
