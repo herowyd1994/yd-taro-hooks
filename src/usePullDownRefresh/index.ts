@@ -13,7 +13,7 @@ export default <D extends Record<string, any>>({
     formatData = data => data
 }: Props<D>) => {
     const { get } = useFetch();
-    let { status, noMore, pageNum, data, dispatch, reset } = useStore<Store<D>>({
+    let { status, noMore, pageNum, data, dispatch } = useStore<Store<D>>({
         status: Status.None,
         noMore: false,
         pageNum: 1,

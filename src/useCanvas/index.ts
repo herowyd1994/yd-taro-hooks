@@ -71,7 +71,7 @@ export default (selector: string, fileType: 'jpg' | 'png' = 'png', quality: numb
         return y + size;
     };
     const draw = async (handler: Handler, clear: boolean = false, delay: number = 250) => {
-        const { hide } = loading({ title: '生成中...', delay });
+        const hide = loading({ title: '生成中...', delay });
         const { width, height } = canvas.current!;
         clear && clearRect(0, 0, width, height);
         await handler({
