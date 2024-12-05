@@ -8,7 +8,7 @@ import { useLock } from '@yd/r-hooks';
 export default <P extends Record<string, any>, R extends Record<string, any> = any>(
     routeNames?: R,
     defaultParams?: P,
-    delay?: number
+    delay: number = 500
 ) => {
     const { path, params } = useRouter();
     const methods = ['push', 'replace', 'reLaunch', 'switchTab'].reduce(

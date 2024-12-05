@@ -59,7 +59,7 @@
 
 "@yd/fetch@https://github.com/herowyd1994/yd-fetch.git":
   version "1.0.1"
-  resolved "https://github.com/herowyd1994/yd-fetch.git#7cb42db0c07390e9e8e7dc4e2eb884c3eadf2b80"
+  resolved "https://github.com/herowyd1994/yd-fetch.git#23d6c51d687ece81d96d5fd15dfb6ee7bf72b821"
   dependencies:
     "@yd/utils" "https://github.com/herowyd1994/yd-utils.git"
 
