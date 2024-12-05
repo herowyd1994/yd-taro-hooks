@@ -1,7 +1,7 @@
 import * as utils from '@yd/taro-utils';
 import { useRouter } from '@tarojs/taro';
 import { useLock } from '@yd/r-hooks';
-export default (routeNames, defaultParams, delay) => {
+export default (routeNames, defaultParams, delay = 500) => {
     const { path, params } = useRouter();
     const methods = ['push', 'replace', 'reLaunch', 'switchTab'].reduce((obj, method) => {
         const { done } = useLock((key, params = {}) => utils[method](routeNames[key], params), delay);

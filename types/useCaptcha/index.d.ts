@@ -1,6 +1,6 @@
 import { Props } from './types';
 import { Store } from '@yd/r-hooks/types/useVerify/types';
-declare const _default: <S extends Store>({ store, tip: value, time, reset, delay, request: { url, params, formatParams: f, ...config }, formatTime, formatParams, ...props }: Props<S>) => {
+declare const _default: <S extends Store>({ store, tip: value, time, reset, delay, request: { url, params, ...config }, formatTime, formatParams, ...props }: Props<S>) => {
     mobile: (import("@yd/r-hooks/types/useVerify/types").Data<S> & {
         dispatch: (action: import("@yd/r-hooks/types/useVerify/types").Action<S>) => Promise<import("@yd/r-hooks/types/useVerify/types").Values<S>>;
         reset: (keys?: "*" | keyof S | (keyof S)[]) => Promise<import("@yd/r-hooks/types/useVerify/types").Values<S>>;

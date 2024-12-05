@@ -1,5 +1,5 @@
 import { Props, Status, Store } from './types';
-declare const _default: <D extends Record<string, any>>({ immediate, pageSize, requestUrl, params, formatParams, formatData }: Props<D>) => {
+declare const _default: <D extends Record<string, any>>({ immediate, pageSize, requestUrl, params, formatData, ...props }: Props<D>) => {
     status: Status;
     noMore: boolean;
     data: D[];
