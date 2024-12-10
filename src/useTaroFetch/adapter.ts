@@ -18,7 +18,7 @@ export default (config: RequestConfig) =>
                 resolve({
                     ...res,
                     status,
-                    errMsg: errMsg ?? msg,
+                    errMsg: msg ?? errMsg,
                     headers: header as Headers,
                     data,
                     config
