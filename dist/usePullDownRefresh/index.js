@@ -5,7 +5,7 @@ export default ({ immediate = true, pageSize = 10, requestUrl, params, formatDat
     const { onRequest } = useGet(requestUrl, { pageSize, ...params }, {
         ...props,
         immediate: false,
-        done: list => (Array.isArray(list) ? { list, total: list.length } : list)
+        formatData: list => (Array.isArray(list) ? { list, total: list.length } : list)
     });
     let { status, noMore, pageNum, data, dispatch } = useStore({
         status: Status.None,

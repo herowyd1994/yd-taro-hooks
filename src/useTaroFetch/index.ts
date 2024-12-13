@@ -26,10 +26,10 @@ export const createFetch = ({
     ...config
 }: Config) =>
     create({
+        ...config,
         adapter,
         onHeader,
         onLogout: throttle(onLogout),
         onError,
-        transformRequestBody,
-        ...config
+        transformRequestBody
     });

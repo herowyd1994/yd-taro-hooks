@@ -14,10 +14,10 @@ export const createFetch = ({ onHeader = async (headers) => Object.assign(header
     await removeStorage('Authorization');
     push('/pages/login/index');
 }, onError = ({ errMsg }) => toast(errMsg), transformRequestBody = ({ body }) => body, ...config }) => create({
+    ...config,
     adapter,
     onHeader,
     onLogout: throttle(onLogout),
     onError,
-    transformRequestBody,
-    ...config
+    transformRequestBody
 });

@@ -1,17 +1,16 @@
 import { useCountDown, useLock } from '@yd/r-hooks';
 import { useForm, useGet } from '../index';
 import { toast } from '@yd/taro-utils';
-export default ({ store, tip: value, time = 60, reset = true, delay, request: { url, params, ...config }, formatTime = time => `${time}s`, formatParams = params => params, ...props }) => {
+export default ({ store, tip: value, time = 60, reset = true, delay, request: { url, params, ...config }, formatTime = time => `${time}s`, ...props }) => {
     const { onRequest } = useGet(url, params, {
         ...config,
         immediate: false,
         toast: false
     });
     const { mobile, tip, ...form } = useForm({
+        ...props,
         store: { ...store, tip: { value } },
-        delay,
-        formatParams,
-        ...props
+        delay
     });
     const { countDown, abort } = useCountDown({
         time,

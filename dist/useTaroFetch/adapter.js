@@ -13,17 +13,12 @@ export default (config) => new Promise((resolve, reject) => {
             resolve({
                 ...res,
                 status,
-                errMsg: errMsg ?? msg,
+                errMsg: msg ?? errMsg,
                 headers: header,
                 data,
                 config
             });
         },
-        fail: ({ statusCode: status, header: headers, ...err }) => reject({
-            ...err,
-            status,
-            headers,
-            config
-        })
+        fail: ({ statusCode: status, header: headers, ...err }) => reject({ ...err, status, headers, config })
     });
 });

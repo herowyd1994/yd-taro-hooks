@@ -14,7 +14,6 @@ export default <S extends Store>({
     delay,
     request: { url, params, ...config },
     formatTime = time => `${time}s`,
-    formatParams = params => params,
     ...props
 }: Props<S>) => {
     const { onRequest } = useGet(url, params, {
@@ -23,10 +22,9 @@ export default <S extends Store>({
         toast: false
     });
     const { mobile, tip, ...form } = useForm({
+        ...props,
         store: { ...store, tip: { value } },
-        delay,
-        formatParams,
-        ...props
+        delay
     });
     const { countDown, abort } = useCountDown({
         time,

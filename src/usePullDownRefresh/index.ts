@@ -18,7 +18,7 @@ export default <D extends Record<string, any>>({
         {
             ...props,
             immediate: false,
-            done: list => (Array.isArray(list) ? { list, total: list.length } : list)
+            formatData: list => (Array.isArray(list) ? { list, total: list.length } : list)
         }
     );
     let { status, noMore, pageNum, data, dispatch } = useStore<Store<D>>({

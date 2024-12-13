@@ -2,13 +2,10 @@
 
 import { Config } from '../useGet/types';
 
-export interface Props<D> extends Omit<Config<D[]>, 'formatParams' | 'formatData'> {
+export interface Props<D> extends Omit<Config, 'formatData'> {
     pageSize?: number;
     requestUrl: string;
     params?: Record<string, any>;
-    formatParams?(
-        params: { pageSize: number; pageNum: number } & Record<string, any>
-    ): Promise<Record<string, any>> | Record<string, any>;
     formatData?(data: any): Promise<D[]> | D[];
 }
 export interface Response<D> {

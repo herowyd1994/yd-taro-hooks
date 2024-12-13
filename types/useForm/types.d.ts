@@ -1,4 +1,4 @@
-import { Values } from '@yd/r-hooks/types/useVerify/types';
+import { RequestConfig } from '@yd/fetch/types/types';
 export interface Props<S> {
     store: S;
     submitUrl?: string;
@@ -6,7 +6,7 @@ export interface Props<S> {
     delay?: number;
     toast?: boolean;
     back?: boolean;
-    formatParams?(params: Record<string, any> & Values<S>): Promise<Record<string, any>> | Record<string, any>;
     done?(data: any): any;
 }
-export type Handler = <D>(params?: Record<string, any>) => Promise<Promise<D>>;
+export type Handler = <D>(params?: Record<string, any>, config?: Config) => Promise<Promise<D>>;
+export type Config = Omit<Partial<RequestConfig>, 'toast'>;
