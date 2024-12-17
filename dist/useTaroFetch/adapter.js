@@ -19,6 +19,11 @@ export default (config) => new Promise((resolve, reject) => {
                 config
             });
         },
-        fail: ({ statusCode: status, header: headers, ...err }) => reject({ ...err, status, headers, config })
+        fail: ({ statusCode: status, header: headers, ...err }) => reject({
+            ...err,
+            status,
+            headers,
+            config
+        })
     });
 });
