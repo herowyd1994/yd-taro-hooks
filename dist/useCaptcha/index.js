@@ -1,7 +1,7 @@
 import { useCountDown, useLock } from '@yd/r-hooks';
 import { useForm, useGet } from '../index';
 import { toast } from '@yd/taro-utils';
-export default ({ store, tip: value, time = 60, reset = true, delay, request: { url, params, ...config }, formatTime = time => `${time}s`, ...props }) => {
+export default ({ store, tip: value, time = 60, reset = true, delay, request: { url, params, ...config } = { url: '' }, formatTime = time => `${time}s`, ...props }) => {
     const { onRequest } = useGet(url, params, {
         ...config,
         immediate: false,

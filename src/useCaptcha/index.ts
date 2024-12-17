@@ -12,7 +12,7 @@ export default <S extends Store>({
     time = 60,
     reset = true,
     delay,
-    request: { url, params, ...config },
+    request: { url, params, ...config } = { url: '' },
     formatTime = time => `${time}s`,
     ...props
 }: Props<S>) => {
