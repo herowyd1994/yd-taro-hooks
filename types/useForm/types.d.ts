@@ -9,4 +9,4 @@ export interface Props<S> {
     done?(data: any): any;
 }
 export type Handler = <D>(params?: Record<string, any>, config?: Config) => Promise<Promise<D>>;
-export type Config = Omit<Partial<RequestConfig>, 'toast'>;
+export type Config = Partial<Omit<RequestConfig, 'toast'>>;

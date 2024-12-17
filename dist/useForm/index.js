@@ -5,8 +5,8 @@ export default ({ store, submitUrl, updateUrl, delay, toast: t = true, back: b =
     const fetch = useFetch();
     const { back } = useNavigation();
     const { validate, ...verify } = useVerify(store);
-    const { done: d1 } = useLock(params => handler('post', params), delay);
-    const { done: d2 } = useLock(params => handler('put', params), delay);
+    const { done: d1 } = useLock((params, config) => handler('post', params, config), delay);
+    const { done: d2 } = useLock((params, config) => handler('put', params, config), delay);
     const handler = async (method, params, config) => {
         try {
             const res = await fetch[method](method === 'post' ? submitUrl : updateUrl, { ...(await validate()), ...params }, { ...config, toast: false });
