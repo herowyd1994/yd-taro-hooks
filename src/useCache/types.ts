@@ -14,7 +14,6 @@ export interface Config<D = any> extends Partial<RequestConfig<D>> {
 export type Request<D> = (params?: Record<string, any>) => Promise<Promise<D>>;
 export interface Store<D> {
     data: D | undefined;
-    key: string;
 }
 export interface Cache {
     url: string;

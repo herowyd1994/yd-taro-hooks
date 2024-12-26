@@ -4,10 +4,7 @@ import { transformUrlParams } from '@yd/utils';
 const cache = {};
 export default (url, params, { immediate = true, interval = 1500, delay, deps = [], done: d, ...config } = {}) => {
     const { get } = useFetch();
-    const { data, key, dispatch } = useStore({
-        data: void 0,
-        key: ''
-    });
+    const { data, dispatch } = useStore({ data: void 0 });
     const { done, lock: isLoading } = useLock(async (p) => {
         params = { ...params, ...p };
         const key = `${url}${transformUrlParams(params)}`;
@@ -17,7 +14,7 @@ export default (url, params, { immediate = true, interval = 1500, delay, deps = 
         if (Date.now() - time > interval) {
             data = await get(url, params, config);
             Reflect.set(cache, key, { url, params, config, data, time: Date.now() });
-            dispatch({ data, key });
+            dispatch({ data });
             await d?.(data);
         }
         return data;
@@ -25,7 +22,6 @@ export default (url, params, { immediate = true, interval = 1500, delay, deps = 
     useUpdate(done, deps, Number(!immediate));
     return {
         data,
-        key,
         dispatch,
         request: done,
         isLoading
