@@ -1,7 +1,7 @@
 /** @format */
 
 import { useStore, useMount, useUpdate, useLock } from '@yd/r-hooks';
-import { useCache } from '../index';
+import { useFetch } from '../index';
 import { Props, Status, Store } from './types';
 
 export default <D extends Record<string, any>>({
@@ -12,15 +12,7 @@ export default <D extends Record<string, any>>({
     formatData = data => data,
     ...props
 }: Props<D>) => {
-    const { request } = useCache(
-        requestUrl,
-        { pageSize, ...params },
-        {
-            ...props,
-            immediate: false,
-            formatData: list => (Array.isArray(list) ? { list, total: list.length } : list)
-        }
-    );
+    const { get } = useFetch();
     let { status, noMore, pageNum, data, dispatch } = useStore<Store<D>>({
         status: Status.None,
         noMore: false,
@@ -31,7 +23,14 @@ export default <D extends Record<string, any>>({
         dispatch({ status: Status.Refreshing, noMore: false, pageNum: 1, data: [] });
     const onPull = () => !noMore && dispatch({ status: Status.Pulling });
     const { done } = useLock(async () => {
-        const { list, total } = await request({ pageNum }).catch(() => ({ list: [], total: 0 }));
+        const { list, total } = await get(
+            requestUrl,
+            { ...params, pageSize, pageNum },
+            {
+                ...props,
+                formatData: list => (Array.isArray(list) ? { list, total: list.length } : list)
+            }
+        ).catch(() => ({ list: [], total: 0 }));
         data = data.concat(await formatData(list));
         return dispatch({
             status: Status.None,

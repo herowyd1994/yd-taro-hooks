@@ -1,8 +1,9 @@
 /** @format */
 
-import { Config } from '../useCache/types';
+import { MethodFnConfig } from '@yd/fetch/types/types';
 
-export interface Props<D> extends Omit<Config, 'formatData'> {
+export interface Props<D> extends Omit<MethodFnConfig, 'formatData'> {
+    immediate?: boolean;
     pageSize?: number;
     requestUrl: string;
     params?: Record<string, any>;

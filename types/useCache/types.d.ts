@@ -1,8 +1,7 @@
-import { RequestConfig } from '@yd/fetch/types/types';
+import { MethodFnConfig } from '@yd/fetch/types/types';
 import { DependencyList } from 'react';
-export interface Config<D = any> extends Partial<RequestConfig<D>> {
+export interface Config<D = any> extends MethodFnConfig {
     immediate?: boolean;
-    defaultValue?: any;
     interval?: number;
     delay?: number;
     deps?: DependencyList;

@@ -1,12 +1,8 @@
 import { useCountDown, useLock } from '@yd/r-hooks';
-import { useForm, useCache } from '../index';
+import { useForm, useFetch } from '../index';
 import { toast } from '@yd/taro-utils';
 export default ({ store, tip: value, time = 60, reset = true, delay, request: { url, params, ...config } = { url: '' }, formatTime = time => `${time}s`, ...props }) => {
-    const { request } = useCache(url, params, {
-        ...config,
-        immediate: false,
-        toast: false
-    });
+    const { get } = useFetch();
     const { mobile, tip, ...form } = useForm({
         ...props,
         store: { ...store, tip: { value } },
@@ -23,7 +19,7 @@ export default ({ store, tip: value, time = 60, reset = true, delay, request: { 
     });
     const { done: getCaptcha, unLock } = useLock(async () => {
         try {
-            await request(await mobile.validate());
+            await get(url, { ...params, ...(await mobile.validate()) }, { ...config, toast: false });
             toast('发送成功');
         }
         catch (err) {
