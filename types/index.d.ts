@@ -6,4 +6,4 @@ export { default as usePullDownRefresh } from './usePullDownRefresh';
 export { default as useCaptcha } from './useCaptcha';
 export { default as useForm } from './useForm';
 export { default as useModalForm } from './useModalForm';
-export { default as useGet } from './useGet';
+export { default as useCache } from './useCache';

@@ -1,13 +1,9 @@
-import { Config } from '../useGet/types';
+import { Config } from '../useCache/types';
 export interface Props<D> extends Omit<Config, 'formatData'> {
     pageSize?: number;
     requestUrl: string;
     params?: Record<string, any>;
     formatData?(data: any): Promise<D[]> | D[];
-}
-export interface Response<D> {
-    list: D[];
-    total: number;
 }
 export interface Store<D> {
     status: Status;
