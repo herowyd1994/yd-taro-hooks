@@ -13,7 +13,8 @@ export default <S extends Store>({
     delay,
     toast: t = true,
     back: b = false,
-    done
+    done,
+    ...props
 }: Props<S>) => {
     const fetch = useFetch();
     const { back } = useNavigation();
@@ -29,7 +30,7 @@ export default <S extends Store>({
             const res = await fetch[method](
                 method === 'post' ? submitUrl! : updateUrl!,
                 { ...(await validate()), ...params },
-                { ...config, toast: false }
+                { ...props, ...config, toast: false }
             );
             await done?.(res);
             t && toast(`${method === 'post' ? '提交' : '更新'}成功`);

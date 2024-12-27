@@ -1,5 +1,5 @@
 import { RequestConfig } from '@yd/fetch/types/types';
-export interface Props<S> {
+export interface Props<S> extends Config {
     store: S;
     submitUrl?: string;
     updateUrl?: string;
