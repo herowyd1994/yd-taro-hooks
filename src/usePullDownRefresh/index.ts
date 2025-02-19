@@ -13,16 +13,16 @@ export default <D extends Record<string, any>>({
     ...props
 }: Props<D>) => {
     const { get } = useFetch();
-    let { status, noMore, pageNum, data, dispatch } = useStore<Store<D>>({
+    let { status, noMore, pageNum, data, $dispatch } = useStore<Store<D>>({
         status: Status.None,
         noMore: false,
         pageNum: 1,
         data: []
     });
     const onRefresh = () =>
-        dispatch({ status: Status.Refreshing, noMore: false, pageNum: 1, data: [] });
-    const onPull = () => !noMore && dispatch({ status: Status.Pulling });
-    const { done } = useLock(async () => {
+        $dispatch({ status: Status.Refreshing, noMore: false, pageNum: 1, data: [] });
+    const onPull = () => !noMore && $dispatch({ status: Status.Pulling });
+    const { isLocking, done } = useLock(async () => {
         const { list, total } = await get(
             requestUrl,
             { ...params, pageSize, pageNum },
@@ -32,7 +32,7 @@ export default <D extends Record<string, any>>({
             }
         ).catch(() => ({ list: [], total: 0 }));
         data = data.concat(await formatData(list));
-        return dispatch({
+        return $dispatch({
             status: Status.None,
             noMore: data.length >= total,
             pageNum: pageNum + 1,
@@ -45,6 +45,7 @@ export default <D extends Record<string, any>>({
         status,
         noMore,
         data,
+        isLocking,
         onRefresh,
         onPull
     };

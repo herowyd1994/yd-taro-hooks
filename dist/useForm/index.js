@@ -10,7 +10,7 @@ export default ({ store, submitUrl, updateUrl, delay, toast: t = true, back: b =
     const handler = async (method, params, config) => {
         try {
             const res = await fetch[method](method === 'post' ? submitUrl : updateUrl, { ...(await validate()), ...params }, { ...props, ...config, toast: false });
-            await done?.(res);
+            done?.(res);
             t && toast(`${method === 'post' ? '提交' : '更新'}成功`);
             b && back();
             return res;

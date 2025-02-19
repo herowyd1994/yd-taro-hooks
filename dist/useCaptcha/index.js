@@ -1,7 +1,7 @@
 import { useCountDown, useLock } from '@yd/r-hooks';
 import { useForm, useFetch } from '../index';
 import { toast } from '@yd/taro-utils';
-export default ({ store, tip: value, time = 60, reset = true, delay, request: { url, params, ...config } = { url: '' }, formatTime = time => `${time}s`, ...props }) => {
+export default ({ store, tip: value, time = 60, reset = true, delay, requestUrl, formatTime = time => `${time}s`, ...props }) => {
     const { get } = useFetch();
     const { mobile, tip, ...form } = useForm({
         ...props,
@@ -17,9 +17,9 @@ export default ({ store, tip: value, time = 60, reset = true, delay, request: { 
             return t;
         }
     });
-    const { done: getCaptcha, unLock } = useLock(async () => {
+    const { done, unLock } = useLock(async (params, config) => {
         try {
-            await get(url, { ...params, ...(await mobile.validate()) }, { ...config, toast: false });
+            await get(requestUrl, { ...(await mobile.validate()), ...params }, { ...config, toast: false });
             toast('发送成功');
         }
         catch (err) {
@@ -36,7 +36,7 @@ export default ({ store, tip: value, time = 60, reset = true, delay, request: { 
         mobile,
         tip: tip.value,
         ...form,
-        getCaptcha,
+        getCaptcha: done,
         onAbort
     };
 };

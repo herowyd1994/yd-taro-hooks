@@ -1,6 +1,6 @@
 {
     "name": "@yd/taro-hooks",
-    "version": "1.0.2",
+    "version": "1.0.1",
     "description": "## taro工具库",
     "main": "dist/index.js",
     "types": "types/index.d.ts",

@@ -2,7 +2,7 @@
 
 import { useCountDown, useLock } from '@yd/r-hooks';
 import { useForm, useFetch } from '../index';
-import { Props } from './types';
+import { Props, Handler } from './types';
 import { Store } from '@yd/r-hooks/types/useVerify/types';
 import { toast } from '@yd/taro-utils';
 
@@ -12,7 +12,7 @@ export default <S extends Store>({
     time = 60,
     reset = true,
     delay,
-    request: { url, params, ...config } = { url: '' },
+    requestUrl,
     formatTime = time => `${time}s`,
     ...props
 }: Props<S>) => {
@@ -31,11 +31,11 @@ export default <S extends Store>({
             return t;
         }
     });
-    const { done: getCaptcha, unLock } = useLock(async () => {
+    const { done, unLock } = useLock(async (params, config) => {
         try {
             await get(
-                url,
-                { ...params, ...(await mobile.validate()) },
+                requestUrl,
+                { ...(await mobile.validate()), ...params },
                 { ...config, toast: false }
             );
             toast('发送成功');
@@ -53,7 +53,7 @@ export default <S extends Store>({
         mobile,
         tip: tip.value,
         ...form,
-        getCaptcha,
+        getCaptcha: done as Handler,
         onAbort
     };
 };
