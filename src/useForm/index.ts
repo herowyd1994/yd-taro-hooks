@@ -32,7 +32,7 @@ export default <S extends Store>({
                 { ...(await validate()), ...params },
                 { ...props, ...config, toast: false }
             );
-            done?.(res);
+            await done?.(res);
             t && toast(`${method === 'post' ? '提交' : '更新'}成功`);
             b && back();
             return res;

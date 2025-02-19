@@ -2,7 +2,7 @@
 
 import { useCountDown, useLock } from '@yd/r-hooks';
 import { useForm, useFetch } from '../index';
-import { Props, Handler } from './types';
+import { Props, GetCaptcha } from './types';
 import { Store } from '@yd/r-hooks/types/useVerify/types';
 import { toast } from '@yd/taro-utils';
 
@@ -53,7 +53,7 @@ export default <S extends Store>({
         mobile,
         tip: tip.value,
         ...form,
-        getCaptcha: done as Handler,
+        getCaptcha: done as GetCaptcha,
         onAbort
     };
 };

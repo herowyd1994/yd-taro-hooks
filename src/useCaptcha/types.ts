@@ -9,5 +9,5 @@ export interface Props<S> extends Partial<CountDownProps>, FormProps<Store<S>> {
     tip: string;
     requestUrl: string;
 }
-export type Handler = (params?: Record<string, any>, config?: Config) => Promise<Promise<void>>;
+export type GetCaptcha = (params?: Record<string, any>, config?: Config) => Promise<Promise<void>>;
 type Store<S> = S & { mobile: StoreOpts };

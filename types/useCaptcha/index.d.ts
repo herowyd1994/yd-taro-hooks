@@ -1,4 +1,4 @@
-import { Props, Handler } from './types';
+import { Props, GetCaptcha } from './types';
 import { Store } from '@yd/r-hooks/types/useVerify/types';
 declare const _default: <S extends Store>({ store, tip: value, time, reset, delay, requestUrl, formatTime, ...props }: Props<S>) => {
     mobile: (import("@yd/r-hooks/types/useVerify/types").Data<S & {
@@ -86,7 +86,7 @@ declare const _default: <S extends Store>({ store, tip: value, time, reset, dela
     onSubmit: import("../useForm/types").Handler;
     onUpdate: import("../useForm/types").Handler;
 }, "mobile" | "tip"> & {
-    getCaptcha: Handler;
+    getCaptcha: GetCaptcha;
     onAbort: () => Promise<void>;
 };
 export default _default;
