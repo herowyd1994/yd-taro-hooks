@@ -1,7 +1,7 @@
 /** @format */
 
 import { request } from '@tarojs/taro';
-import { RequestConfig, Response } from '@yd/fetch/types/types';
+import { RequestConfig, Response } from '@yd/fetch/dist/types';
 
 export default (config: RequestConfig) =>
     new Promise<Response>((resolve, reject) => {

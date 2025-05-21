@@ -1,6 +1,6 @@
 /** @format */
 
-import { MethodFnConfig } from '@yd/fetch/types/types';
+import { MethodFnConfig } from '@yd/fetch/dist/types';
 
 export interface Props<D> extends Omit<MethodFnConfig, 'formatData'> {
     immediate?: boolean;

@@ -1,8 +1,8 @@
 /** @format */
 
-import { Props as CountDownProps } from '@yd/r-hooks/types/useCountDown/types';
+import { Props as CountDownProps } from '@yd/r-hooks/dist/useCountDown/types';
 import { Props as FormProps, Config } from '../useForm/types';
-import { StoreOpts } from '@yd/r-hooks/types/useVerify/types';
+import { StoreOpts } from '@yd/r-hooks/dist/useVerify/types';
 
 export interface Props<S> extends Partial<CountDownProps>, FormProps<Store<S>> {
     store: Store<S>;

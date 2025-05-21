@@ -1,7 +1,7 @@
 /** @format */
 
 import { createFetch as create } from '@yd/fetch';
-import { Config } from '@yd/fetch/types/types';
+import { Config } from '@yd/fetch/dist/types';
 import adapter from './adapter';
 import { getStorage, removeStorage, toast, push } from '@yd/taro-utils';
 import { getCurrentPages } from '@tarojs/taro';

@@ -1,6 +1,6 @@
 /** @format */
 
-import { RequestConfig } from '@yd/fetch/types/types';
+import { RequestConfig } from '@yd/fetch/dist/types';
 
 export interface Props<S> extends Config {
     store: S;

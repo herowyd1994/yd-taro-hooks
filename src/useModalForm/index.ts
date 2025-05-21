@@ -3,7 +3,7 @@
 import { useForm } from '../index';
 import { useStore } from '@yd/r-hooks';
 import { Props } from './types';
-import { Action, Store } from '@yd/r-hooks/types/useVerify/types';
+import { Action, Store } from '@yd/r-hooks/dist/useVerify/types';
 
 export default <S extends Store>({ reset: r = true, ...props }: Props<S>) => {
     const { dispatch, reset, onSubmit: submit, onUpdate: update, ...form } = useForm(props);

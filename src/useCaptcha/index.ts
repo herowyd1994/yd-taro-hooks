@@ -3,7 +3,7 @@
 import { useCountDown, useLock } from '@yd/r-hooks';
 import { useForm, useFetch } from '../index';
 import { Props, GetCaptcha } from './types';
-import { Store } from '@yd/r-hooks/types/useVerify/types';
+import { Store } from '@yd/r-hooks/dist/useVerify/types';
 import { toast } from '@yd/taro-utils';
 
 export default <S extends Store>({
